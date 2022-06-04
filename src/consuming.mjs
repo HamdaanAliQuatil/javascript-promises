@@ -8,6 +8,11 @@ export function get() {
 }
 
 export function getCatch() {
+    axios.get("http://localhost:3000/orders/123")
+    .then(({data}) => {
+        setText(JSON.stringify(data));
+    })
+    .catch(err => setText(err.message));
 }
 
 export function chain() {

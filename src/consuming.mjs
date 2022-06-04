@@ -26,6 +26,21 @@ export function chain() {
 }
 
 export function chainCatch() {
+    axios.get("http://localhost:3000/orders/1")
+    .then(({data}) => {
+         return axios.get(`http://localhost:3000/addresses/${data.shippingAddress}`);
+
+        // throw new Error("Error");
+    })
+    // .catch(err => {
+    //     setText(err.message);
+    //     return {data: {}};
+    //     // throw new Error("Second Error");
+    // })
+    .then(({data}) => {
+        setText(`City: ${data.my.city}`);
+    })
+    .catch(err => setText(err.message));
 }
 
 export function final() {
